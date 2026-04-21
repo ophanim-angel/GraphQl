@@ -115,20 +115,20 @@
     transition: fill 0.18s ease, stroke 0.18s ease, filter 0.18s ease;
 }
 
-.chart-point-group.is-active .chart-point-glow,
-.chart-point-group:focus-visible .chart-point-glow,
+/* .chart-point-group.is-active .chart-point-glow,
+.chart-point-group:focus-visible .chart-point-glow, */
 .chart-point-group:hover .chart-point-glow {
     opacity: 1;
     filter: drop-shadow(0 0 12px rgba(37, 99, 235, 0.35));
 }
 
-.chart-point-group.is-active .chart-point,
-.chart-point-group:focus-visible .chart-point,
-.chart-point-group:hover .chart-point {
+/* .chart-point-group.is-active .chart-point,
+.chart-point-group:focus-visible .chart-point, */
+/* .chart-point-group:hover .chart-point {
     fill: #2563eb;
     stroke: #ffffff;
     filter: drop-shadow(0 0 10px rgba(37, 99, 235, 0.4));
-}
+} */
 
 .chart-tooltip {
     position: absolute;
@@ -218,7 +218,7 @@
     width: 14px;
     height: 14px;
     flex: none;
-    border-radius: 9999px;
+    border-radius: 100px;
 }
 
 @media (max-width: 760px) {
