@@ -84,6 +84,25 @@ export const renderProfile = (profile, onLogout) => {
     analyticsBlock.append(auditBlock, skillsBlock);
     contentStack.append(createProjectProgressChart(profile.projects), analyticsBlock);
 
+    //chwiya dial zkiir
+    document.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+    });
+    document.addEventListener('keydown', (e) => {
+        // F12
+        if (e.key === 'F12') {
+            e.preventDefault();
+        }
+        // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
+        if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
+            e.preventDefault();
+        }
+        // Ctrl+U (View Source)
+        if (e.ctrlKey && e.key === 'u') {
+            e.preventDefault();
+        }
+    });
+
     container.append(header, contentStack);
     app.appendChild(container);
 
