@@ -1,0 +1,234 @@
+.audit-gauge {
+    position: relative;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    min-height: 180px;
+    margin: 0.75rem 0 0;
+}
+
+.audit-gauge-safe {
+    --gauge-color: var(--primary);
+}
+
+.audit-gauge-optimal {
+    --gauge-color: var(--optimal);
+}
+
+.audit-gauge-danger {
+    --gauge-color: var(--danger);
+}
+
+.audit-gauge-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 10px 20px rgba(25, 28, 30, 0.06));
+}
+
+.audit-gauge-track,
+.audit-gauge-progress {
+    fill: none;
+    stroke-linecap: round;
+    stroke-width: 18;
+}
+
+.audit-gauge-track {
+    stroke: rgba(84, 100, 122, 0.15);
+}
+
+.audit-gauge-progress {
+    stroke: var(--gauge-color);
+    stroke-dasharray: 283;
+    stroke-dashoffset: calc(283 - (283 * var(--gauge-progress)) / 180);
+}
+
+.audit-gauge-core {
+    position: absolute;
+    left: 50%;
+    bottom: 8px;
+    transform: translateX(-50%);
+    width: min(100%, 190px);
+    text-align: center;
+}
+
+.audit-gauge-core strong {
+    display: block;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 2.4rem;
+    letter-spacing: -0.05em;
+    color: var(--gauge-color);
+}
+
+.audit-gauge-core span {
+    font-size: 0.92rem;
+    color: var(--text-soft);
+}
+
+.project-chart-wrap {
+    position: relative;
+    margin-top: 1rem;
+    padding: 0.75rem 0.25rem 0.25rem;
+    border-radius: 24px;
+    background: var(--surface-low);
+    box-shadow: var(--shadow-inset);
+}
+
+.project-chart {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.chart-grid-line {
+    stroke: rgba(84, 100, 122, 0.2);
+    stroke-width: 1;
+}
+
+.chart-area {
+    fill: url(#project-area);
+}
+
+.chart-line {
+    fill: none;
+    stroke: url(#project-flow);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.chart-point-group {
+    outline: none;
+}
+
+.chart-point-glow {
+    fill: rgba(37, 99, 235, 0.14);
+    opacity: 0;
+    transition: opacity 0.18s ease, filter 0.18s ease;
+}
+
+.chart-point {
+    fill: #fefefe;
+    stroke: #2563eb;
+    stroke-width: 2.5;
+    transition: fill 0.18s ease, stroke 0.18s ease, filter 0.18s ease;
+}
+
+.chart-point-group.is-active .chart-point-glow,
+.chart-point-group:focus-visible .chart-point-glow,
+.chart-point-group:hover .chart-point-glow {
+    opacity: 1;
+    filter: drop-shadow(0 0 12px rgba(37, 99, 235, 0.35));
+}
+
+.chart-point-group.is-active .chart-point,
+.chart-point-group:focus-visible .chart-point,
+.chart-point-group:hover .chart-point {
+    fill: #2563eb;
+    stroke: #ffffff;
+    filter: drop-shadow(0 0 10px rgba(37, 99, 235, 0.4));
+}
+
+.chart-tooltip {
+    position: absolute;
+    padding: 0.8rem 0.95rem;
+    border-radius: 18px;
+    background: var(--surface-glass);
+    backdrop-filter: blur(24px);
+    box-shadow: var(--shadow-float);
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.chart-tooltip strong,
+.chart-tooltip span {
+    display: block;
+}
+
+.chart-tooltip span {
+    margin-top: 0.15rem;
+    color: var(--text-soft);
+}
+
+.skills-chart-layout {
+    display: grid;
+    grid-template-columns: minmax(220px, 270px) minmax(0, 1fr);
+    gap: 1rem;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.skills-chart {
+    width: min(100%, 270px);
+    aspect-ratio: 1;
+    position: relative;
+    justify-self: center;
+    border-radius: 50%;
+    box-shadow: var(--shadow-inset);
+}
+
+.skills-chart::after {
+    content: "";
+    position: absolute;
+    inset: 22%;
+    border-radius: 50%;
+    background: var(--surface);
+    box-shadow: var(--shadow-raised);
+}
+
+.skills-chart-center {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: grid;
+    place-content: center;
+    text-align: center;
+}
+
+.skills-chart-center strong {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 2rem;
+}
+
+.skills-chart-empty {
+    display: grid;
+    place-items: center;
+    color: var(--text-soft);
+}
+
+.skills-legend {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.skills-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 0.95rem;
+    border-radius: 18px;
+    background: var(--surface-low);
+    box-shadow: var(--shadow-inset);
+}
+
+.skills-legend-item span {
+    color: var(--text-soft);
+}
+
+.skills-color {
+    width: 14px;
+    height: 14px;
+    flex: none;
+    border-radius: 9999px;
+}
+
+@media (max-width: 760px) {
+    .audit-gauge {
+        min-height: 190px;
+    }
+
+    .skills-chart-layout {
+        grid-template-columns: 1fr;
+    }
+}
