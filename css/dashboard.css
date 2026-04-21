@@ -64,10 +64,10 @@
 }
 
 .avatar-shell {
-    width: 92px;
-    height: 92px;
+    width: 190px;
+    height: 190px;
+    border: solid var(--primary-strong) 0.3rem;
     display: grid;
-    place-items: center;
     overflow: hidden;
     border-radius: 26px;
     color: white;

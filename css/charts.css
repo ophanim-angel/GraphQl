@@ -46,7 +46,7 @@
 .audit-gauge-core {
     position: absolute;
     left: 50%;
-    bottom: 8px;
+    bottom: 85px;
     transform: translateX(-50%);
     width: min(100%, 190px);
     text-align: center;
@@ -165,7 +165,6 @@
     position: relative;
     justify-self: center;
     border-radius: 50%;
-    box-shadow: var(--shadow-inset);
 }
 
 .skills-chart::after {
@@ -174,7 +173,6 @@
     inset: 22%;
     border-radius: 50%;
     background: var(--surface);
-    box-shadow: var(--shadow-raised);
 }
 
 .skills-chart-center {
