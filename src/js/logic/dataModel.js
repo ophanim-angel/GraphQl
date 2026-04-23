@@ -63,6 +63,7 @@ const normalizeProjects = (projects = []) => {
     return projects.map((project) => ({
         name: project.object?.name ?? project.path?.split('/').pop() ?? 'Unnamed project',
         xp: Number(project.amount ?? 0),
+        validatedAt: project.createdAt ? new Date(project.createdAt).toLocaleDateString() : 'N/A'
     }));
 };
 

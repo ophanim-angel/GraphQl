@@ -141,10 +141,10 @@ export const createProjectProgressChart = (projects = []) => {
             </linearGradient>
         </defs>
         ${Array.from({ length: yTicks + 1 }, (_, tickIndex) => {
-            const ratio = tickIndex / yTicks;
-            const y = padding.top + ratio * (height - padding.top - padding.bottom);
-            return `<line x1="${padding.left}" y1="${y}" x2="${width - padding.right}" y2="${y}" class="chart-grid-line"></line>`;
-        }).join('')}
+        const ratio = tickIndex / yTicks;
+        const y = padding.top + ratio * (height - padding.top - padding.bottom);
+        return `<line x1="${padding.left}" y1="${y}" x2="${width - padding.right}" y2="${y}" class="chart-grid-line"></line>`;
+    }).join('')}
         <path d="${areaData}" class="chart-area"></path>
         <path d="${pathData}" class="chart-line"></path>
         ${points.map((point, index) => `
@@ -160,6 +160,7 @@ export const createProjectProgressChart = (projects = []) => {
         tooltip.innerHTML = `
             <strong>${point.name}</strong>
             <span>${formatXp(point.xp)} earned</span>
+            <span>${point.validatedAt}</span>
         `;
 
         const containerRect = chartWrap.getBoundingClientRect();
