@@ -1,4 +1,4 @@
-const SKILL_COLORS = ['#004ac6', '#2563eb', '#4e8ef7', '#7ab0ff', '#00a37a', '#f0a202'];
+const SKILL_COLORS = ['#df2d00', '#2563eb', '#4e8ef7', '#7ab0ff', '#00a37a', '#f0a202'];
 
 const formatXp = (xp) => {
     if (xp >= 1000000) {
