@@ -206,31 +206,37 @@ export const createProjectProgressChart = (projects = []) => {
 
 export const createAuditGauge = (ratio) => {
     const normalizedRatio = Number.isFinite(ratio) ? ratio : 0;
-    const gaugeValue = clamp(normalizedRatio, 0, 2);
-    const progressDegrees = gaugeValue * 90;
+    const clampedRatio = Math.min(Math.max(normalizedRatio, 0), 2);
+    
+    // Total length of the semi-circle arch (Pi * radius)
+    // Path radius is 90, so length is ~282.7
+    const totalLength = 283; 
+    
+    // Calculate how much of that length to fill
+    // If ratio is 1.0, it fills 50% of the 0-2 range, which is half the arch.
+    const fillAmount = (clampedRatio / 2) * totalLength;
 
     let tone = 'safe';
-    if (normalizedRatio > 1) {
-        tone = 'optimal';
-    } else if (normalizedRatio < 1) {
-        tone = 'danger';
-    }
+    if (normalizedRatio > 1) tone = 'optimal';
+    else if (normalizedRatio < 1) tone = 'danger';
 
     const section = document.createElement('section');
     section.className = 'panel audit-panel';
     section.innerHTML = `
         <div class="panel-heading">
             <h2>Audit Ratio</h2>
-            <p>Ratio counter</p>
         </div>
         <div class="audit-gauge audit-gauge-${tone}">
-            <svg class="audit-gauge-svg" viewBox="0 0 240 140" aria-hidden="true">
+            <svg class="audit-gauge-svg" viewBox="0 0 240 140">
                 <path d="M 30 120 A 90 90 0 0 1 210 120" class="audit-gauge-track"></path>
-                <path d="M 30 120 A 90 90 0 0 1 210 120" class="audit-gauge-progress" style="--gauge-progress:${progressDegrees};"></path>
+                <path d="M 30 120 A 90 90 0 0 1 210 120" 
+                      class="audit-gauge-progress" 
+                      style="stroke-dasharray: ${fillAmount} ${totalLength};">
+                </path>
             </svg>
             <div class="audit-gauge-core">
                 <strong>${normalizedRatio.toFixed(1)}</strong>
-                <span>${normalizedRatio === 1 ? 'Balanced' : normalizedRatio > 1 ? 'Above 1.0' : 'Below 1.0'}</span>
+                <span>${normalizedRatio == 1 ? 'Balanced' : normalizedRatio > 1 ? 'Above 1.0' : 'Below 1.0'}</span>
             </div>
         </div>
     `;
