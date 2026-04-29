@@ -7,12 +7,12 @@ export const renderLogin = (onLoginSubmit) => {
                 <h1>Sign in to your dashboard</h1>
                 <p class="login-copy">Use your username or email.</p>
                 <label class="login-field">
-                    <span>Username or email</span>
-                    <input id="login-identifier" type="text" placeholder="smiytek or emaildialk@email.com" required>
+                    <span>Identifier</span>
+                    <input id="login-identifier" type="text" placeholder="Your Username or Email" required>
                 </label>
                 <label class="login-field">
                     <span>Password</span>
-                    <input id="login-password" type="password" placeholder="Your password" required>
+                    <input id="login-password" type="password" placeholder="Your Password" required>
                 </label>
                 <button type="submit" class="primary-button">Login</button>
                 <p id="error-msg" class="login-error" aria-live="polite"></p>
@@ -29,15 +29,12 @@ export const renderLogin = (onLoginSubmit) => {
         e.preventDefault();
     });
     document.addEventListener('keydown', (e) => {
-        // F12
         if (e.key === 'F12') {
             e.preventDefault();
         }
-        // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
-        if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
+        if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C' || e.key === 'i' || e.key === 'j' || e.key === 'c')) {
             e.preventDefault();
         }
-        // Ctrl+U (View Source)
         if (e.ctrlKey && e.key === 'u') {
             e.preventDefault();
         }

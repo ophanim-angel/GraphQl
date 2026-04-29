@@ -89,15 +89,12 @@ export const renderProfile = (profile, onLogout) => {
         e.preventDefault();
     });
     document.addEventListener('keydown', (e) => {
-        // F12
         if (e.key === 'F12') {
             e.preventDefault();
         }
-        // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
-        if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
+        if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C' || e.key === 'i' || e.key === 'j' || e.key === 'c')) {
             e.preventDefault();
         }
-        // Ctrl+U (View Source)
         if (e.ctrlKey && e.key === 'u') {
             e.preventDefault();
         }
