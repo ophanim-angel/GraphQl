@@ -15,8 +15,7 @@ A web application that authenticates with the Zone01 Oujda GraphQL API to displa
 * **API**: GraphQL
 * **Graphics**: SVG (Scalable Vector Graphics)
 * **Auth**: JWT & Base64 Basic Authentication
-* **Hosting**: [Your Hosting Link Here]
-* **Deployment**: dashql.netlify.app
+* **Hosting**: dashql.netlify.app
 
 ##  GraphQL Usage
 The project implements diverse query patterns:
