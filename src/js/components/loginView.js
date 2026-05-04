@@ -23,29 +23,52 @@ export const renderLogin = (onLoginSubmit) => {
     const form = document.getElementById('login-form');
     const userInput = document.getElementById('login-identifier');
     const passInput = document.getElementById('login-password');
-    
-    //chwiya dial zkiir
-    document.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-    });
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'F12') {
-            e.preventDefault();
-        }
-        if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C' || e.key === 'i' || e.key === 'j' || e.key === 'c')) {
-            e.preventDefault();
-        }
-        if (e.ctrlKey && e.key === 'u') {
-            e.preventDefault();
-        }
-    });
 
+    //  DevTools Detection Logic
+    let devToolsDetected = false;
+    const THRESHOLD = 160;
+
+    const checkDevTools = () => {
+        const widthDiff = window.outerWidth - window.innerWidth;
+        const heightDiff = window.outerHeight - window.innerHeight;
+        const isOpen = widthDiff > THRESHOLD || heightDiff > THRESHOLD;
+
+        if (isOpen && !devToolsDetected) {
+            devToolsDetected = true;
+            document.body.innerHTML = '🔒 DevTools detected - Page cleared';
+            document.body.style.backgroundColor = '#000';
+            console.log("🔒 DevTools detected - Page cleared");
+        }
+    };
+
+    // Listen for resize (docked DevTools)
+    window.addEventListener('resize', checkDevTools);
+    // Fallback polling for undocked/edge cases
+    const devToolsInterval = setInterval(checkDevTools, 1000);
+
+    // Cleanup: Stop checking if login succeeds (optional)
+    const stopDevToolsCheck = () => {
+        window.removeEventListener('resize', checkDevTools);
+        clearInterval(devToolsInterval);
+    };
+
+    //  Anti-debug: Block context menu & keyboard shortcuts
+    document.addEventListener('contextmenu', (e) => e.preventDefault(), { passive: false });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'F12') e.preventDefault();
+        if (e.ctrlKey && e.shiftKey && ['I', 'J', 'C', 'i', 'j', 'c'].includes(e.key)) e.preventDefault();
+        if (e.ctrlKey && e.key === 'u') e.preventDefault();
+    }, { passive: false });
+
+    // 📬 Handle login submission
     form.onsubmit = (e) => {
         e.preventDefault();
+        stopDevToolsCheck(); // Stop DevTools checks after successful interaction
         onLoginSubmit(userInput.value.trim(), passInput.value);
     };
 };
 
 export const showLoginError = (message) => {
-    document.getElementById('error-msg').textContent = message;
+    const el = document.getElementById('error-msg');
+    if (el) el.textContent = message;
 };
